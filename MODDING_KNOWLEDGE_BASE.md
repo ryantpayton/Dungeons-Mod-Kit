@@ -6,6 +6,14 @@
 
 ---
 
+## 📺 Video Tutorials
+
+New to modding? Check out this helpful playlist to get started:
+
+🎬 **[Minecraft Dungeons Modding Tutorials](https://www.youtube.com/playlist?list=PLFtSvldL7Mh49e3qcvoG3hWUCbyLDQGqq)**
+
+---
+
 ## Table of Contents
 
 1. [Game Overview](#game-overview)
@@ -95,6 +103,33 @@ Dungeons/
 
 ## Tools Reference
 
+### UE Viewer (UModel)
+
+**Download:** [https://www.gildor.org/en/projects/umodel#files](https://www.gildor.org/en/projects/umodel#files)  
+**Purpose:** Extract and view contents of PAK files, view 3D models, textures, and animations
+
+UModel is essential for exploring game assets and extracting files from PAK archives.
+
+#### How to Extract Game Files with UModel
+
+1. Download and extract `umodel_win32.zip`
+2. Open `umodel.exe`
+3. Under **"Path to game files:"** click the `...` button and navigate to your Paks folder where Dungeons is installed:
+   ```
+   E:\SteamLibrary\steamapps\common\MinecraftDungeons\Dungeons\Content\Paks
+   ```
+4. Click **OK**
+5. Type in the latest AES key from `dungeons.bms` (Currently at Dungeons 1.17.0.0):
+   ```
+   0x7D5F892ECEBFA53CC22001DF48B871D51C0DF7C54CE41933BFB285219829B3A8
+   ```
+6. Press **OK**
+7. We only need **"All packages" → "Game"** folder, but you can choose to export all. Right-click the folder and select **"Export folder content"**
+8. Under **"Export to this folder"** click the `...` button and select a folder where you want the exports to save. I save it in the same folder as umodel.exe in a new folder called `UmodelExport`
+9. Change **"Texture Export" → "Texture format:"** to **"PNG"**
+10. Click **OK**
+11. If it asks you to specify the game version, select **"Unreal engine 4.22"** from the drop-down and click **OK**
+
 ### u4pak.py
 
 **Location:** `D:\Desktop\repos\Git\Dungeons-Mod-Kit\Tools\py\u4pak.py`  
@@ -141,8 +176,52 @@ python D:\Desktop\repos\Git\Dungeons-Mod-Kit\Tools\py\u4pak.py pack "output.pak"
 
 ### QuickBMS
 
+**Download:** [https://aluigi.altervista.org/papers/quickbms.zip](https://aluigi.altervista.org/papers/quickbms.zip)  
 **Location:** `D:\Desktop\repos\Git\Dungeons-Mod-Kit\quickbms\`  
-**Purpose:** Extract game PAK files using dungeons.bms script
+**Purpose:** Extract encrypted game PAK files using BMS scripts
+
+The package includes:
+
+- `quickbms.exe` - Main tool (standard 32-bit)
+- `quickbms_4gb_files.exe` - For archives/files larger than 4GB
+- `reimport.bat` / `reimport2.bat` - For reimporting modified files
+
+#### How to Extract Game Files with QuickBMS
+
+1. Download and extract `quickbms.zip` from the link above
+2. Right-click `quickbms_4gb_files.exe` and select **"Run as administrator"**
+3. When prompted for a script, select `dungeons.bms` (located in the mod kit root folder)
+4. Navigate to the Paks folder:
+   ```
+   E:\SteamLibrary\steamapps\common\MinecraftDungeons\Dungeons\Content\Paks\
+   ```
+   Select **ALL** pak files and click **Open**
+5. Select an output folder (e.g., `quickbms\BmsExport\`)
+6. Click **Save**
+7. Wait for extraction to complete
+
+#### AES Keys for Minecraft Dungeons
+
+The `dungeons.bms` script contains AES decryption keys for each game version. The current key (v1.17.0.0) is:
+
+```
+0x7D5F892ECEBFA53CC22001DF48B871D51C0DF7C54CE41933BFB285219829B3A8
+```
+
+If a new game update breaks extraction, check for updated keys in the modding community.
+
+#### Command-Line Usage
+
+```powershell
+# Extract PAK file
+quickbms.exe dungeons.bms "path\to\pakchunk0-WindowsNoEditor.pak" "output\folder"
+
+# List files without extracting
+quickbms.exe -l dungeons.bms "path\to\file.pak"
+
+# Filter specific files
+quickbms.exe -f "*.json" dungeons.bms "path\to\file.pak" "output\folder"
+```
 
 Already extracted files are in: `quickbms\BmsExport\Dungeons\Content\`
 
