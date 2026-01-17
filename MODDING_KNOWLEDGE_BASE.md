@@ -225,6 +225,21 @@ quickbms.exe -f "*.json" dungeons.bms "path\to\file.pak" "output\folder"
 
 Already extracted files are in: `quickbms\BmsExport\Dungeons\Content\`
 
+### Cheat Engine Tables
+
+**Download:** [https://www.dungeoncollector.co.uk/?CT=1](https://www.dungeoncollector.co.uk/?CT=1)  
+**Location:** `D:\Desktop\repos\Git\Dungeons-Mod-Kit\CheatEngine\`  
+**Purpose:** Memory editing tables for testing, debugging, and item manipulation
+
+Cheat Engine tables (.CT files) allow you to modify game memory in real-time, useful for:
+
+- Testing item combinations without farming
+- Debugging mod interactions
+- Exploring game mechanics
+- Unlimited emeralds/enchantment points for testing
+
+> **Note:** Use responsibly! These are primarily intended for single-player testing and mod development.
+
 ---
 
 ## PAK File Creation
