@@ -1,0 +1,48 @@
+
+================================================================================
+INVENTORY SORTING MOD - MANUAL COMPLETION STEPS
+================================================================================
+
+The automated tool has copied all necessary supporting files. To complete the
+modification, you need to edit UMG_InventoryHUD.uasset using UAssetGUI.
+
+DOWNLOAD UASSETGUI:
+  https://github.com/atenfyr/UAssetGUI/releases
+
+STEPS TO ADD SORTING:
+
+1. Open UAssetGUI and load:
+   Precooked/Content/UI/Inventory/UMG_InventoryHUD.uasset
+
+2. In the Name Map, add these new names:
+   - UMG_SortSelectionPicker
+   - UMG_SortSelectionPicker_C
+   - /Game/Content_Season3/UI/StorageChest/UMG_SortSelectionPicker
+   - InventorySort
+   - onOptionSelected
+   - SortItems
+   - sortBy
+   - EItemSortMethod
+
+3. In the Import Table, add an import for:
+   - ClassPackage: /Game/Content_Season3/UI/StorageChest/UMG_SortSelectionPicker
+   - ClassName: WidgetBlueprintGeneratedClass
+   - ObjectName: UMG_SortSelectionPicker_C
+
+4. In the Export Table, find the main widget hierarchy and add a child widget
+   of type UMG_SortSelectionPicker_C named "InventorySort"
+
+5. Save the modified file
+
+6. Run cook_assets.bat or package.bat to test
+
+ALTERNATIVE (EASIER):
+If UAssetGUI modification is too complex, you can:
+
+1. Open the UE4 project in Unreal Editor 4.22
+2. Create a new Widget Blueprint based on UMG_InventoryHUD
+3. Add the UMG_SortSelectionPicker widget to the UI
+4. Connect the onOptionSelected event to call SortItems on your inventory
+5. Cook and package
+
+================================================================================
